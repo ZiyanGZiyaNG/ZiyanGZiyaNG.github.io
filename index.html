@@ -1,131 +1,52 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ziyang OI Wiki</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ziyang.'s Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-
 <body>
+    <header class="topbar">
+        <div class="logo">Ziyang.'s Blog</div>
+        <nav>
+            <input id="search-input" class="search-box" placeholder="Search (Ctrl+K)">
+            <a id="theme-toggle" class="theme-btn">
+                <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M21.75 15.5a9.75 9.75 0 01-11.25-13 9 9 0 1011.25 13z"/>
+                </svg>
+            </a>
+        </nav>
+    </header>
 
-<header class="topbar">
+    <div class="layout">
+        <aside class="sidebar-left">
+            <div class="sidebar-group">
+                <button class="sidebar-toggle"><span>Intro</span><span class="arrow">▼</span></button>
+                <ul class="sidebar-menu open">
+                    <li><a href="#" class="nav-link" data-post="whoami">whoami</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-group">
+                <button class="sidebar-toggle"><span>Data Structures</span><span class="arrow">▼</span></button>
+                <ul class="sidebar-menu open">
+                    <li><a href="#" class="nav-link" data-post="segment-tree">Segment Tree</a></li>
+                    <li><a href="#" class="nav-link" data-post="bit">Fenwick Tree</a></li>
+                </ul>
+            </div>
+        </aside>
 
-<div class="logo">
-ZIYANG.OI / WIKI
-</div>
+        <main class="content" id="markdown-body">
+            <p>載入中...</p>
+        </main>
 
-<nav>
+        <aside class="sidebar-right">
+            <h3>On This Page</h3>
+            <ul id="toc"></ul>
+        </aside>
+    </div>
 
-<a href="index.html">INDEX</a>
-<a href="CP.html">ALGORITHMS</a>
-<a href="notes.html">RESOURCES</a>
-
-
-<!-- 主題切換 icon -->
-
-<a href="javascript:void(0);" id="theme-toggle" class="theme-btn">
-
-<svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24">
-
-<path
-fill="currentColor"
-d="M21.75 15.5a9.75 9.75 0 01-11.25-13
-9 9 0 1011.25 13z"
-/>
-
-</svg>
-
-</a>
-
-</nav>
-
-</header>
-
-
-<div class="layout">
-
-
-<aside class="sidebar-left">
-
-<h3>Basics</h3>
-
-<ul>
-
-<li>Language Basics</li>
-<li>Complexity Analysis</li>
-<li>STL Containers</li>
-
-</ul>
-
-
-<h3 style="margin-top:30px;">Data Structures</h3>
-
-<ul>
-
-<li>Segment Tree</li>
-<li>Binary Indexed Tree</li>
-
-</ul>
-
-</aside>
-
-
-
-<main class="content">
-
-<h1 id="welcome">Knowledge Base</h1>
-
-<p>
-這是我整理競程筆記的私人 Wiki。
-這裡不追求花哨，而是追求閱讀效率。
-</p>
-
-
-<h2 id="st">Segment Tree</h2>
-
-<p>
-線段樹是一種區間查詢資料結構，
-時間複雜度通常為 O(log N)。
-</p>
-
-
-<h2 id="bit">Fenwick Tree</h2>
-
-<p>
-Fenwick Tree 主要用於前綴和維護，
-程式碼非常短。
-</p>
-
-</main>
-
-
-
-<aside class="sidebar-right">
-
-<h3>On This Page</h3>
-
-<ul>
-
-<li><a href="#welcome">Knowledge Base</a></li>
-<li><a href="#st">Segment Tree</a></li>
-<li><a href="#bit">Fenwick Tree</a></li>
-
-</ul>
-
-</aside>
-
-
-</div>
-
-
-<script src="js/main.js"></script>
-
+    <script src="js/main.js"></script>
 </body>
-
 </html>
