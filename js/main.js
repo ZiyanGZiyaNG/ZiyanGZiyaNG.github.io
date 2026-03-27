@@ -129,6 +129,20 @@ async function loadMarkdown(postName)
         const mdText = await response.text();
 
         target.innerHTML = marked.parse(mdText);
+        document.querySelectorAll("pre code").forEach((block) =>
+        {
+            hljs.highlightElement(block);
+        });
+        if (window.renderMathInElement)
+        {
+            renderMathInElement(target, {
+            delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+            ],
+            throwOnError: false
+        });
+}
 
         generateTOC(target, toc);
 
