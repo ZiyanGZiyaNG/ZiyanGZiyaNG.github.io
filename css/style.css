@@ -1,56 +1,197 @@
-body
-{
-
-font-family: Arial;
-margin: 0;
-
+/* ===== 核心變數設定 ===== */
+:root {
+    /* 預設黑色模式 */
+    --bg-main: #0a0a0c;
+    --bg-panel: #111113;
+    --border: #222225;
+    --border-bright: #333338;
+    --accent: #ffffff;
+    --text-main: #e0e0e0;
+    --text-dim: #666666;
+    
+    --topbar-h: 60px;
+    --sidebar-w: 220px;
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.navbar
-{
-
-background: #222;
-padding: 15px;
-
+/* ===== 明亮模式配色 ===== */
+[data-theme="light"] {
+    --bg-main: #f9f9fb;
+    --bg-panel: #ffffff;
+    --border: #e2e2e7;
+    --border-bright: #d1d1d6;
+    --accent: #1a1a1c;
+    --text-main: #1d1d1f;
+    --text-dim: #86868b;
 }
 
-.navbar a
-{
-
-color: white;
-margin-right: 20px;
-text-decoration: none;
-
+html {
+    scroll-behavior: smooth;
 }
 
-.layout
-{
-
-display: flex;
-
+body {
+    margin: 0;
+    font-family: "Inter", "SF Pro Display", system-ui, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    transition: background var(--transition), color var(--transition);
 }
 
-.sidebar
-{
-
-width: 250px;
-background: #f2f2f2;
-padding: 20px;
-height: 100vh;
-
+/* 讓切換時所有顏色變化都有過渡效果 */
+.topbar, .sidebar-left, .sidebar-right, .content, li, a, h2 {
+    transition: all var(--transition);
 }
 
-.content
-{
-
-flex: 1;
-padding: 40px;
-
+/* 修正錨點跳轉 */
+h1[id], h2[id], h3[id] {
+    scroll-margin-top: calc(var(--topbar-h) + 24px);
 }
 
-.container
-{
-
-padding: 40px;
-
+/* ===== 頂部導航 ===== */
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--topbar-h);
+    background: rgba(var(--bg-main), 0.8); /* 稍微透明 */
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    box-sizing: border-box;
 }
+
+.logo {
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.topbar nav { margin-left: auto; }
+.topbar nav a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 30px;
+    position: relative;
+}
+
+.topbar nav a:hover {
+    color: var(--accent);
+}
+
+/* ===== 佈局架構 ===== */
+.layout {
+    display: flex;
+    margin-top: var(--topbar-h);
+}
+
+.sidebar-left {
+    width: var(--sidebar-w);
+    height: calc(100vh - var(--topbar-h));
+    padding: 40px 16px;
+    border-right: 1px solid var(--border);
+    position: fixed;
+    background: var(--bg-main);
+}
+
+.sidebar-left h3 {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding-left: 12px;
+}
+
+.sidebar-left ul { list-style: none; padding: 0; }
+.sidebar-left li {
+    font-size: 14px;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    border: 1px solid transparent;
+}
+
+.sidebar-left li:hover {
+    color: var(--accent);
+    background: var(--bg-panel);
+    border: 1px solid var(--border-bright);
+}
+
+.content {
+    margin-left: var(--sidebar-w);
+    margin-right: var(--sidebar-w);
+    padding: 80px 100px;
+    max-width: 800px;
+    flex: 1;
+}
+
+.content h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 30px;
+    color: var(--accent);
+    letter-spacing: -1.5px;
+}
+
+.content h2 {
+    font-size: 24px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid var(--accent);
+    color: var(--accent);
+}
+
+.content p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-dim); /* 明亮模式下會變灰黑，深色模式維持暗灰 */
+}
+
+/* 強制調整明亮模式下的段落顏色，確保可讀性 */
+[data-theme="light"] .content p {
+    color: #444446;
+}
+
+.sidebar-right {
+    width: var(--sidebar-w);
+    height: calc(100vh - var(--topbar-h));
+    padding: 40px 20px;
+    position: fixed;
+    right: 0;
+    border-left: 1px solid var(--border);
+}
+
+.sidebar-right h3 {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.sidebar-right li a {
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 6px 0;
+}
+
+.sidebar-right li a:hover {
+    color: var(--accent);
+    padding-left: 5px;
+}
+
+/* 捲動條 */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
