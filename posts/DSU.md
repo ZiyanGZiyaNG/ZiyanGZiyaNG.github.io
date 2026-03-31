@@ -8,3 +8,11 @@ The line between point1 and point2 is called an edge.
 We say point1 and point2 belong to the same connected component.
 
 ## [TOJ - 701](https://toj.tfcis.org/oj/pro/701/)
+```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    
+}
+```
