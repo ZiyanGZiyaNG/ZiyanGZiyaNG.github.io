@@ -1,4 +1,5 @@
 # [CSES - Shortest Routes I](https://cses.fi/problemset/task/1671)
+AC(0.14s)
 ```cpp=
 #include <bits/stdc++.h>
 using namespace std;
@@ -35,6 +36,8 @@ vector<ll> dijkstra(int s)
 }
 int main()
 {
+	ios::sync_with_stdio(false);
+	cin.tie(0);
 	cin >> n >> m;
 	g.assign(n + 1, vector<pii> ());
 	for (int i = 0; i < m; i++)
