@@ -3,6 +3,10 @@
 ## 介紹
 Edsger Dijkstra於1959年發表於期刊的一種算法，主要解決最短路徑問題。
 
+## 先備知識
+`BFS` `priority_queue` `Graph Thory`
+
+## 
 
 ## 題目
 [NTOJ - 900](https://toj.tfcis.org/oj/pro/900/)
