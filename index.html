@@ -1,115 +1,34 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <link rel="icon" href="/favicon/favicon.ico">
-
-    <link rel="icon" type="image/png" sizes="32x32"
-    href="/favicon/favicon-32x32.png">
-
-    <link rel="icon" type="image/png" sizes="16x16"
-    href="/favicon/favicon-16x16.png">
-
-    <link rel="apple-touch-icon"
-    href="/favicon/apple-touch-icon.png">
-
-    <link rel="manifest"
-    href="/favicon/site.webmanifest">
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ziyang.'s Blog</title>
-
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-
-    <script defer
-            src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js">
-    </script>
-
-    <script defer
-            src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js">
-    </script>
+    <title>Aurelia Finch</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="topbar">
-        <div class="logo">Ziyang.'s Blog</div>
-        <nav>
-            <input id="search-input" class="search-box" placeholder="Search (Ctrl+K)">
-            <a id="theme-toggle" class="theme-btn">
-                <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24">
-                    <path fill="currentColor" d="M21.75 15.5a9.75 9.75 0 01-11.25-13 9 9 0 1011.25 13z"/>
-                </svg>
-            </a>
-        </nav>
-    </header>
 
-    <div class="layout">
-        <aside class="sidebar-left">
-            <div class="sidebar-group">
-                <button class="sidebar-toggle"><span>Intro</span><span class="arrow">▼</span></button>
-                <ul class="sidebar-menu open">
-                    <li><a href="#" class="nav-link" data-post="whoami">whoami</a></li>
-                    <li><a href="#" class="nav-link" data-post="origin">origin</a></li>
-                </ul>
-            </div>
+    <nav class="navbar">
+        <div class="logo">✺</div>
+        <ul class="nav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="user-profile">C</div>
+    </nav>
 
-            <div class="sidebar-group">
-                <button class="sidebar-toggle"><span>Data Structures</span><span class="arrow">▼</span></button>
-                <ul class="sidebar-menu open">
-                    <li><a href="#" class="nav-link" data-post="DSU">DSU</a></li>
-                    <li><a href="#" class="nav-link" data-post="segment-tree">Segment Tree</a></li>
-                    <li><a href="#" class="nav-link" data-post="bit">Fenwick Tree</a></li>
-                </ul>
-            </div>
+    <main class="hero-container">
+        <div class="arch-image">
+            <img src="你的圖片路徑.jpg" alt="Background">
+        </div>
+        
+        <h1 class="hero-title">Ziyang.</h1>
+        <p class="hero-subtitle">Weaver of Worlds</p>
+        <button class="cta-btn">Discover the Latest Novel</button>
+    </main>
 
-            <div class="sidebar-group">
-                <button class="sidebar-toggle"><span>Algorithm</span><span class="arrow">▼</span></button>
-                <ul class="sidebar-menu open">
-                    <li><a href="#" class="nav-link" data-post="Binary-search">Binary Search</a></li>
-                    <li><a href="#" class="nav-link" data-post="dijkstra">Dijkstra</a></li>
-                    <li><a href="#" class="nav-link" data-post="BFS">BFS</a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-group">
-                <button class="sidebar-toggle"><span>Solution</span><span class="arrow">▼</span></button>
-                <ul class="sidebar-menu open">
-                    <li><a href="#" class="nav-link" data-post="NTOJ196">NTOJ - 196(2014 全國資訊能力競賽模擬賽)</a></li>
-                    <li><a href="#" class="nav-link" data-post="NTOJ900">NTOJ - 900</a></li>
-                    <li><a href="#" class="nav-link" data-post="CSES-shortestroutesi">CSES - Shortest Routes I</a></li>
-                    <li><a href="#" class="nav-link" data-post="ZJ a874">ZeroJuage a874</a></li>
-                    <li><a href="#" class="nav-link" data-post="Uva 10986">Uva 10986</a></li>
-                    <li><a href="#" class="nav-link" data-psot="south2025pE">2025 南區賽 pE</a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-group">
-                <button class="sidebar-toggle"><span>Template</span><span class="arrow">▼</span></button>
-                <ul class="sidebar-menu open">
-                    <li><a href="#" class="nav-link" data-post="Persistent-segment-tree">Persistent-segment-tree</a></li>
-                </ul>
-            </div>
-
-        </aside>
-
-        <main class="content" id="markdown-body">
-            <p>載入中...</p>
-        </main>
-
-        <aside class="sidebar-right">
-            <h3>On This Page</h3>
-            <ul id="toc"></ul>
-        </aside>
-    </div>
-
-    <script src="js/main.js"></script>
 </body>
 </html>
