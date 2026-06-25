@@ -468,3 +468,191 @@ body {
 .about-pic-container:hover img {
     transform: scale(1.05);
 }
+
+/* ==========================================================================
+   完全融合版：極簡象牙白動態樹線 (Elegant Timeline)
+   ========================================================================== */
+
+.tree-wrapper {
+    max-width: 1100px;
+    margin: 140px auto 0 auto;
+    padding: 0 40px;
+}
+
+.circuit-tree {
+    position: relative;
+    width: 100%;
+    padding: 60px 0;
+}
+
+/* ─── 1. 中央主要主幹（改為象牙白低調漸層流動） ─── */
+.circuit-tree::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 1px; /* 縮細到 1px，更精緻 */
+    background: linear-gradient(to bottom, rgba(234, 230, 223, 0.2) 30%, #eae6df 50%, rgba(234, 230, 223, 0.2) 70%);
+    background-size: 100% 200%;
+    box-shadow: 0 0 8px rgba(234, 230, 223, 0.3);
+    animation: circuitPulse 4s linear infinite;
+}
+
+@keyframes circuitPulse {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 200%; }
+}
+
+/* 節點登場動畫 */
+.tree-node {
+    position: relative;
+    width: 100%;
+    margin-bottom: 120px;
+    display: flex;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInBranch 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.tree-node:nth-child(1) { animation-delay: 0.1s; }
+.tree-node:nth-child(2) { animation-delay: 0.3s; }
+.tree-node:nth-child(3) { animation-delay: 0.5s; }
+.tree-node:nth-child(4) { animation-delay: 0.7s; }
+
+@keyframes fadeInBranch {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.branch-left { justify-content: flex-start; }
+.branch-right { justify-content: flex-end; }
+
+/* ─── 文字區塊 ─── */
+.branch-content {
+    width: 38%; 
+    color: #a19e98;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.branch-left .branch-content { text-align: right; padding-right: 35px; }
+.branch-right .branch-content { text-align: left; padding-left: 35px; }
+
+/* 滑鼠移入時文字稍微亮起 */
+.tree-node:hover .branch-content {
+    color: #eae6df;
+}
+
+/* ─── 2. 水平分支線（改成象牙白細線） ─── */
+.tree-node::before {
+    content: '';
+    position: absolute;
+    top: 50px; 
+    height: 1px; /* 降為 1px */
+    background: rgba(234, 230, 223, 0.4); /* 帶有透明度的象牙白 */
+    width: 12%; 
+    transition: all 0.3s ease;
+}
+
+.branch-left::before { left: 38%; }
+.branch-right::before { left: 50%; }
+
+/* ─── 3. 向上勾起轉折線 ─── */
+.tree-node::after {
+    content: '';
+    position: absolute;
+    top: 20px;   
+    height: 30px; 
+    width: 1px;
+    background: rgba(234, 230, 223, 0.4);
+    transition: all 0.3s ease;
+}
+
+.branch-left::after { left: 38%; }
+.branch-right::after { left: 62%; }
+
+/* ─── 4. 中央主幹接線小圓點 ─── */
+.branch-content::before {
+    content: '';
+    position: absolute;
+    top: 47px; 
+    width: 6px; /* 稍微縮小更內斂 */
+    height: 6px;
+    background: #1a1a17; /* 完美咬合你的背景底色 */
+    border: 1px solid rgba(234, 230, 223, 0.6);
+    border-radius: 50%;
+    z-index: 5;
+    transition: all 0.3s ease;
+}
+
+.branch-left .branch-content::before { right: -12.5%; transform: translateX(50%); }
+.branch-right .branch-content::before { left: -12.5%; transform: translateX(-50%); }
+
+/* ─── 高級 Hover 反饋（線條與圓點同步亮起） ─── */
+.tree-node:hover::before,
+.tree-node:hover::after {
+    background: #eae6df !important;
+    box-shadow: 0 0 8px rgba(234, 230, 223, 0.5) !important;
+}
+
+.tree-node:hover .branch-content::before {
+    background: #eae6df !important;
+    border-color: #eae6df !important;
+    transform: scale(1.2) !important;
+    box-shadow: 0 0 8px rgba(234, 230, 223, 0.8) !important;
+}
+.tree-node.branch-left:hover .branch-content::before { transform: translateX(50%) scale(1.2) !important; }
+.tree-node.branch-right:hover .branch-content::before { transform: translateX(-50%) scale(1.2) !important; }
+
+
+/* ─── 5. 當前進行中節點（Now）— 純白質感呼吸燈 ─── */
+.current-branch::before,
+.current-branch::after {
+    background: #fff !important;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
+}
+
+.current-branch .branch-content h3 {
+    color: #fff !important;
+}
+
+.current-branch .branch-content::before {
+    border-color: #fff !important;
+    background: #fff !important;
+}
+
+/* 讓進行中的節點維持優雅的縮放呼吸效果 */
+.branch-left.current-branch .branch-content::before { animation: nodeGlowLeft 2.5s infinite ease-in-out; }
+.branch-right.current-branch .branch-content::before { animation: nodeGlowRight 2.5s infinite ease-in-out; }
+
+@keyframes nodeGlowLeft {
+    0%, 100% { box-shadow: 0 0 4px rgba(255,255,255,0.4); transform: translateX(50%) scale(1); }
+    50% { box-shadow: 0 0 12px rgba(255,255,255,0.8); transform: translateX(50%) scale(1.2); }
+}
+@keyframes nodeGlowRight {
+    0%, 100% { box-shadow: 0 0 4px rgba(255,255,255,0.4); transform: translateX(-50%) scale(1); }
+    50% { box-shadow: 0 0 12px rgba(255,255,255,0.8); transform: translateX(-50%) scale(1.2); }
+}
+
+/* ─── 關鍵字底部細線（配合風格改成微弱的白線） ─── */
+.branch-content strong {
+    color: #eae6df;
+    font-weight: 600;
+    border-bottom: 1px dashed rgba(234, 230, 223, 0.3);
+}
+
+/* ─── RWD 手機版優化 ─── */
+@media (max-width: 768px) {
+    .circuit-tree::before { left: 20px; transform: none; animation: none; background: rgba(234, 230, 223, 0.3); }
+    .tree-node::before, .tree-node::after { display: none; } 
+    .branch-content::before { left: 20px !important; top: 25px; animation: none !important; background: #eae6df !important; }
+    .branch-left .branch-content::before, .branch-right .branch-content::before { transform: translateX(-50%) !important; }
+    
+    .branch-left, .branch-right { justify-content: flex-start; }
+    .branch-content { width: 100%; padding: 20px 0 20px 40px !important; text-align: left !important; }
+    .tree-node { margin-bottom: 50px; }
+}
