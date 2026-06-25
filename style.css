@@ -440,3 +440,31 @@ body {
         gap: 40px;
     }
 }
+
+/* 左下角圖片容器 */
+.about-pic-container {
+    margin-top: 25px;           /* 與上方保持距離 */
+    width: 100%;                
+    max-width: 380px;           
+    height: 220px;              
+    border-radius: 12px;        /* 圓角保留，圖片才不會尖尖的 */
+    overflow: hidden;           
+    
+    /* 這裡拿掉 border 和 box-shadow，改成下面這樣 */
+    border: none;               /* 完美去框 */
+    box-shadow: none;           /* 拿掉陰影，融入背景 */
+}
+
+/* 圖片本體控制 */
+.about-pic-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          
+    object-position: center;
+    transition: transform 0.3s ease; 
+}
+
+/* 滑鼠懸停動畫效果 */
+.about-pic-container:hover img {
+    transform: scale(1.05);
+}
