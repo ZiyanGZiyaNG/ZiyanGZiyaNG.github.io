@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Article — Ziyang</title>
+    <link rel="icon" href="img/fav.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"> </div>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="article.html">Article</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="logo"> </div>
+    </nav>
+
+    <main class="main-wrapper">
+        <div class="article-list" id="article-list-container">
+            <p style="color: #666; text-align: center; font-style: italic;">Scanning posts folder...</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('article-list-container');
+
+            const username = "ZiaynGZiyaNG"; 
+            const repo = "ZiyanGZiyaNG.github.io"; 
+            const folderPath = "posts"; // 你的文章資料夾名稱
+
+            // 判斷目前是本地開發還是線上環境
+            const isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+            let files = [];
+
+            try {
+                if (isLocal) {
+                    files = [{ name: 'post1.html' }, { name: 'post2.html' }];
+                } else {
+                    // 線上環境：直接用 GitHub API 撈取 posts 資料夾內的所有檔案
+                    const apiURL = `https://api.github.com/repos/${username}/${repo}/contents/${folderPath}`;
+                    const response = await fetch(apiURL);
+                    if (!response.ok) throw new Error('無法讀取 GitHub 資料夾');
+                    files = await response.json();
+                }
+
+                // 篩選出 html 檔案
+                const htmlFiles = files.filter(file => file.name.endsWith('.html'));
+                const postsData = [];
+
+                // 2. 遍歷抓取每篇文章的實際內容
+                for (const file of htmlFiles) {
+                    const filePath = `${folderPath}/${file.name}`;
+                    try {
+                        const res = await fetch(filePath);
+                        if (!res.ok) continue;
+                        const htmlText = await res.text();
+
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(htmlText, 'text/html');
+
+                        // 3. 自動解析文章內的標題、日期、標籤
+                        const title = doc.querySelector('h1')?.innerText || file.name.replace('.html', '');
+                        const date = doc.querySelector('.post-date')?.innerText || '未知日期';
+                        const tag = doc.querySelector('.post-tag')?.innerText || 'General';
+                        
+                        // 抓第一個 p 標籤當摘要
+                        const firstParagraph = doc.querySelector('main p')?.innerText || doc.querySelector('p')?.innerText || '';
+                        const summary = firstParagraph.substring(0, 100) + (firstParagraph.length > 100 ? '...' : '');
+
+                        postsData.push({ path: filePath, title, date, tag, summary });
+                    } catch (e) {
+                        console.error(`解析 ${file.name} 失敗:`, e);
+                    }
+                }
+
+                // 按日期降序排列（新的文章在前，假設檔名或日期可以排序，這裡先依檔案順序反轉）
+                postsData.reverse();
+
+                if (postsData.length === 0) {
+                    container.innerHTML = '<p style="color: #666; text-align: center;">目前資料夾內沒有文章。</p>';
+                    return;
+                }
+
+                // 4. 渲染到畫面上
+                container.innerHTML = postsData.map(post => `
+                    <article class="article-card">
+                        <div class="article-meta">
+                            <span class="article-date">${post.date}</span>
+                            <span class="article-tag">${post.tag}</span>
+                        </div>
+                        <h2 class="article-title">
+                            <a href="${post.path}">${post.title}</a>
+                        </h2>
+                        <p class="article-summary">${post.summary}</p>
+                        <a href="${post.path}" class="read-more">Read More →</a>
+                    </article>
+                `).join('');
+
+            } catch (error) {
+                console.error('自動更新失敗:', error);
+                container.innerHTML = '<p style="color: #ff4444; text-align: center;">暫時無法自動載入文章列表。</p>';
+            }
+        });
+    </script>
+</body>
+</html>

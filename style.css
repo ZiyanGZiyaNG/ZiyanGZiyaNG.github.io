@@ -1,18 +1,28 @@
-* { box-sizing: border-box; }
-body {
-    margin: 0;
-    background-color: #1a1a17;
-    color: #f4eede;
-    font-family: 'Playfair Display', serif;
+/* ==========================================================================
+   1. 全站通用基礎樣式 (Global Reset & Base)
+   ========================================================================== */
+* { 
+    box-sizing: border-box; 
 }
 
-/* 導覽列 */
+body {
+    margin: 0;
+    background-color: #1a1a17; /* 質感象牙黑 */
+    color: #f4eede;           /* 溫潤象牙白 */
+    font-family: 'Playfair Display', serif;
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   2. 導覽列 (Navbar)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
 }
+
 .nav-menu {
     display: flex;
     gap: 30px;
@@ -21,10 +31,22 @@ body {
     padding: 8px 30px;
     border-radius: 50px;
 }
-.nav-menu a { color: #f4eede; text-decoration: none; font-size: 14px; }
-.user-profile { border: 1px solid #f4eede; padding: 5px 10px; border-radius: 50%; }
 
-/* 核心復刻區 */
+.nav-menu a { 
+    color: #f4eede; 
+    text-decoration: none; 
+    font-size: 14px; 
+}
+
+.user-profile { 
+    border: 1px solid #f4eede; 
+    padding: 5px 10px; 
+    border-radius: 50%; 
+}
+
+/* ==========================================================================
+   3. 首頁核心復刻區 (Hero Section)
+   ========================================================================== */
 .hero-container {
     display: flex;
     flex-direction: column;
@@ -34,20 +56,18 @@ body {
     height: 80vh;
 }
 
-/* 這是包裹圖片的拱門外框 */
+/* 包裹圖片的拱門外框 */
 .arch-image {
-    width: 300px; /* 請根據你原本設定的寬度調整 */
-    height: 400px; /* 請根據你原本設定的高度調整 */
-    border-radius: 150px 150px 0 0; /* 你的拱門圓角 */
-    overflow: hidden; /* 確保超出拱門的圖片會被切掉 */
+    width: 300px; 
+    height: 400px; 
+    border-radius: 150px 150px 0 0; 
+    overflow: hidden; 
 }
 
-/* 這是裡面的圖片本體 */
+/* 拱門圖片本體 */
 .arch-image img {
     width: 100%;
     height: 100%;
-    
-    /* 關鍵這兩行：讓圖片像背景一樣填滿，並且絕對居中 */
     object-fit: cover;
     object-position: center; 
 }
@@ -57,10 +77,8 @@ body {
     font-size: 8rem;
     color: #eae6df;
     text-align: center;
-    
-    /* ─── 游標閃爍效果 ─── */
-    display: inline-block;          /* 讓游標貼緊在文字後面 */
-    border-right: 3px solid #eae6df; /* 游標的寬度與顏色 */
+    display: inline-block;          
+    border-right: 3px solid #eae6df; 
     animation: blink .75s step-end infinite;
 }
 
@@ -76,14 +94,11 @@ body {
     font-style: italic;
     color: #a19e98;
     text-align: center;
-
-    /* ─── 1. 把字體放大 ─── */
-    font-size: 1.8rem;     /* 原本如果比較小，可以調整到 1.6rem ~ 2rem 之間看看感覺 */
-    
-    /* ─── 2. 往上移一點，並保持下方按鈕的距離 ─── */
-    margin-top: -65px;     /* 提高負值（例如從 -10px 改到 -25px），它就會再往上吸附靠近 Ziyang. */
-    margin-bottom: 50px;   /* 稍微加大下方邊距，確保不會因為字體變大而壓到下面的按鈕 */
+    font-size: 1.8rem;     
+    margin-top: -65px;     
+    margin-bottom: 50px;   
 } 
+
 .cta-btn {
     background: transparent;
     color: #f4eede;
@@ -94,246 +109,15 @@ body {
     font-family: inherit;
 }
 
-/* ─── Contact Page 專屬風格 ─── */
-
-.contact-container {
-    max-width: 1200px;
-    margin: 120px auto 0 auto; /* 留出 navbar 的空間 */
-    padding: 0 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* 左右雙欄排版 */
-    gap: 80px;
-    align-items: start;
-}
-
-/* 左側文字資訊 */
-.contact-info {
-    color: #eae6df;
-}
-
-.contact-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-style: italic;
-    line-height: 1.2;
-    margin-bottom: 24px;
-}
-
-.contact-desc {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #a19e98; /* 稍淡的灰字，增加層次感 */
-    margin-bottom: 48px;
-    max-width: 400px;
-}
-
-.info-links a {
-    color: #eae6df;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: opacity 0.3s;
-}
-
-.info-links a:hover {
-    opacity: 0.7;
-}
-
-.social-links {
-    margin-top: 24px;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.social-links a {
-    color: #a19e98;
-    font-size: 0.9rem;
-}
-
-/* 右側極簡表單 */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.form-group label {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: #eae6df;
-    margin-bottom: 12px;
-}
-
-/* 極簡下底線輸入框 */
-.form-group input,
-.form-group textarea {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #444; /* 預設暗色細線 */
-    color: #eae6df;
-    font-size: 1rem;
-    padding: 8px 0;
-    outline: none;
-    font-family: inherit;
-    transition: border-color 0.4s ease;
-}
-
-/* 點擊輸入框時，線條亮起 */
-.form-group input:focus,
-.form-group textarea:focus {
-    border-bottom: 1px solid #eae6df; 
-}
-
-/* 讓 textarea 不要能隨便拉大壞了排版 */
-.form-group textarea {
-    resize: none;
-}
-
-/* 送出按鈕：沿用你原本 Discover 按鈕的圓邊與質感 */
-.submit-btn {
-    align-self: flex-start;
-    background: transparent;
-    border: 1px solid #eae6df;
-    color: #eae6df;
-    padding: 12px 32px;
-    font-size: 0.9rem;
-    border-radius: 50px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
-
-.submit-btn:hover {
-    background: #eae6df;
-    color: #111; /* 懸停時反白 */
-}
-
-/* ─── RWD 手機版響應式 ─── */
-@media (max-width: 768px) {
-    .contact-container {
-        grid-template-columns: 1fr; /* 手機版改成單欄，上下排列 */
-        margin: 80px auto 0 auto;
-        gap: 48px;
-    }
-    
-    .contact-title {
-        font-size: 2.5rem;
-    }
-}
-
-/* ─── About Page 專屬風格 ─── */
-
-.about-container {
-    max-width: 1000px;
-    margin: 140px auto 0 auto; /* 留出 navbar 的空間 */
-    padding: 0 40px;
-}
-
-/* 上方大引言區域 */
-.about-header {
-    text-align: center;
-    margin-bottom: 80px;
-}
-
-.about-header .subtitle {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.3em;
-    color: #666; /* 暗灰色，低調的前言 */
-    margin-bottom: 16px;
-}
-
-.about-header .about-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    font-style: italic;
-    color: #eae6df;
-    line-height: 1.4;
-    font-weight: 400;
-}
-
-/* 下方故事內容（雙欄） */
-.about-content {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr; /* 左邊故事略寬，右邊條列略窄 */
-    gap: 80px;
-    line-height: 1.8;
-    color: #a19e98; /* 使用你原本的淡灰色 */
-}
-
-/* 標題樣式 */
-.about-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: #eae6df;
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-/* 左側內文 */
-.content-left {
-    font-size: 1.05rem;
-    text-align: justify;
-}
-
-.content-left strong {
-    color: #eae6df; /* 粗體字加亮 */
-}
-
-/* 右側清單 */
-.content-right ul {
-    list-style: none; /* 拔掉預設醜醜的點 */
-    padding: 0;
-}
-
-.content-right li {
-    margin-bottom: 16px;
-    font-size: 1rem;
-}
-
-.content-right li strong {
-    color: #eae6df;
-}
-
-/* 特殊標籤區塊 */
-.status-tag {
-    margin-top: 40px;
-    padding-left: 16px;
-    border-left: 2px solid #eae6df; /* 側邊細線，呼應你的游標風格 */
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #888;
-}
-
-/* ─── RWD 手機版響應式 ─── */
-@media (max-width: 768px) {
-    .about-header .about-quote {
-        font-size: 2rem;
-    }
-    
-    .about-content {
-        grid-template-columns: 1fr; /* 手機版變單欄 */
-        gap: 40px;
-    }
-}
-
 /* ==========================================================================
-   About Page 專屬風格 (完全量身打造版)
+   4. 關於我頁面 (About Page)
    ========================================================================== */
-
 .about-container {
     max-width: 1100px;
-    margin: 140px auto 0 auto; /* 留出頂部 navbar 的空間 */
+    margin: 140px auto 0 auto; 
     padding: 0 40px;
 }
 
-/* 上方大引言區域 */
 .about-header {
     text-align: center;
     margin-bottom: 80px;
@@ -368,7 +152,6 @@ body {
     }
 }
 
-/* 下方故事內容（雙欄排版） */
 .about-content {
     display: grid;
     grid-template-columns: 1.1fr 1fr; 
@@ -376,7 +159,6 @@ body {
     line-height: 1.8;
 }
 
-/* 區塊小標題樣式 */
 .about-content h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
@@ -386,7 +168,6 @@ body {
     letter-spacing: 0.05em;
 }
 
-/* ─── 列點優化設定 ─── */
 .story-list, .skills-list {
     list-style: none; 
     padding: 0;
@@ -395,11 +176,11 @@ body {
 
 .story-list li, .skills-list li {
     position: relative;
-    padding-left: 24px; /* 留出空間放自訂的小方塊 */
-    margin-bottom: 24px; /* 每一點之間的間距 */
+    padding-left: 24px; 
+    margin-bottom: 24px; 
     font-size: 1.05rem;
     line-height: 1.8;
-    color: #a19e98; /* 質感淡灰色 */
+    color: #a19e98; 
 }
 
 /* 自訂象牙白小方塊點點 */
@@ -413,49 +194,32 @@ body {
     opacity: 0.4;      
 }
 
-/* 加強關鍵字的對比度 */
 .story-list li strong, .skills-list li strong {
     color: #eae6df;
     font-weight: 700;
 }
 
-/* 右下角的側邊線引言 */
 .status-tag {
     margin-top: 48px;
     padding-left: 16px;
-    border-left: 2px solid #eae6df; /* 側邊細線 */
+    border-left: 2px solid #eae6df; 
     font-style: italic;
     font-size: 0.95rem;
     color: #777;
 }
 
-/* ─── RWD 手機版響應式（防止跑版） ─── */
-@media (max-width: 768px) {
-    .about-header .about-quote {
-        font-size: 1.8rem;
-    }
-    
-    .about-content {
-        grid-template-columns: 1fr; /* 手機版變成單欄 */
-        gap: 40px;
-    }
-}
-
 /* 左下角圖片容器 */
 .about-pic-container {
-    margin-top: 25px;           /* 與上方保持距離 */
+    margin-top: 25px;           
     width: 100%;                
     max-width: 380px;           
     height: 220px;              
-    border-radius: 12px;        /* 圓角保留，圖片才不會尖尖的 */
+    border-radius: 12px;        
     overflow: hidden;           
-    
-    /* 這裡拿掉 border 和 box-shadow，改成下面這樣 */
-    border: none;               /* 完美去框 */
-    box-shadow: none;           /* 拿掉陰影，融入背景 */
+    border: none;               
+    box-shadow: none;           
 }
 
-/* 圖片本體控制 */
 .about-pic-container img {
     width: 100%;
     height: 100%;
@@ -464,15 +228,13 @@ body {
     transition: transform 0.3s ease; 
 }
 
-/* 滑鼠懸停動畫效果 */
 .about-pic-container:hover img {
     transform: scale(1.05);
 }
 
 /* ==========================================================================
-   完全融合版：極簡象牙白動態樹線 (Elegant Timeline)
+   5. 歷程樹頁面 (Events / Circuit Tree Page)
    ========================================================================== */
-
 .tree-wrapper {
     max-width: 1100px;
     margin: 140px auto 0 auto;
@@ -485,7 +247,7 @@ body {
     padding: 60px 0;
 }
 
-/* ─── 1. 中央主要主幹（改為象牙白低調漸層流動） ─── */
+/* 中央主要主幹（象牙白低調漸層流動） */
 .circuit-tree::before {
     content: '';
     position: absolute;
@@ -493,7 +255,7 @@ body {
     transform: translateX(-50%);
     top: 0;
     bottom: 0;
-    width: 1px; /* 縮細到 1px，更精緻 */
+    width: 1px; 
     background: linear-gradient(to bottom, rgba(234, 230, 223, 0.2) 30%, #eae6df 50%, rgba(234, 230, 223, 0.2) 70%);
     background-size: 100% 200%;
     box-shadow: 0 0 8px rgba(234, 230, 223, 0.3);
@@ -505,7 +267,6 @@ body {
     100% { background-position: 0% 200%; }
 }
 
-/* 節點登場動畫 */
 .tree-node {
     position: relative;
     width: 100%;
@@ -522,16 +283,12 @@ body {
 .tree-node:nth-child(4) { animation-delay: 0.7s; }
 
 @keyframes fadeInBranch {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .branch-left { justify-content: flex-start; }
 .branch-right { justify-content: flex-end; }
 
-/* ─── 文字區塊 ─── */
 .branch-content {
     width: 38%; 
     color: #a19e98;
@@ -542,18 +299,15 @@ body {
 .branch-left .branch-content { text-align: right; padding-right: 35px; }
 .branch-right .branch-content { text-align: left; padding-left: 35px; }
 
-/* 滑鼠移入時文字稍微亮起 */
-.tree-node:hover .branch-content {
-    color: #eae6df;
-}
+.tree-node:hover .branch-content { color: #eae6df; }
 
-/* ─── 2. 水平分支線（改成象牙白細線） ─── */
+/* 水平分支線 */
 .tree-node::before {
     content: '';
     position: absolute;
     top: 50px; 
-    height: 1px; /* 降為 1px */
-    background: rgba(234, 230, 223, 0.4); /* 帶有透明度的象牙白 */
+    height: 1px; 
+    background: rgba(234, 230, 223, 0.4); 
     width: 12%; 
     transition: all 0.3s ease;
 }
@@ -561,7 +315,7 @@ body {
 .branch-left::before { left: 38%; }
 .branch-right::before { left: 50%; }
 
-/* ─── 3. 向上勾起轉折線 ─── */
+/* 向上勾起轉折線 */
 .tree-node::after {
     content: '';
     position: absolute;
@@ -575,14 +329,14 @@ body {
 .branch-left::after { left: 38%; }
 .branch-right::after { left: 62%; }
 
-/* ─── 4. 中央主幹接線小圓點 ─── */
+/* 中央主幹接線小圓點 */
 .branch-content::before {
     content: '';
     position: absolute;
     top: 47px; 
-    width: 6px; /* 稍微縮小更內斂 */
+    width: 6px; 
     height: 6px;
-    background: #1a1a17; /* 完美咬合你的背景底色 */
+    background: #1a1a17; 
     border: 1px solid rgba(234, 230, 223, 0.6);
     border-radius: 50%;
     z-index: 5;
@@ -592,7 +346,7 @@ body {
 .branch-left .branch-content::before { right: -12.5%; transform: translateX(50%); }
 .branch-right .branch-content::before { left: -12.5%; transform: translateX(-50%); }
 
-/* ─── 高級 Hover 反饋（線條與圓點同步亮起） ─── */
+/* 高級 Hover 反饋 */
 .tree-node:hover::before,
 .tree-node:hover::after {
     background: #eae6df !important;
@@ -608,24 +362,16 @@ body {
 .tree-node.branch-left:hover .branch-content::before { transform: translateX(50%) scale(1.2) !important; }
 .tree-node.branch-right:hover .branch-content::before { transform: translateX(-50%) scale(1.2) !important; }
 
-
-/* ─── 5. 當前進行中節點（Now）— 純白質感呼吸燈 ─── */
+/* 當前進行中節點（Now） */
 .current-branch::before,
 .current-branch::after {
     background: #fff !important;
     box-shadow: 0 0 6px rgba(255, 255, 255, 0.4) !important;
 }
 
-.current-branch .branch-content h3 {
-    color: #fff !important;
-}
+.current-branch .branch-content h3 { color: #fff !important; }
+.current-branch .branch-content::before { border-color: #fff !important; background: #fff !important; }
 
-.current-branch .branch-content::before {
-    border-color: #fff !important;
-    background: #fff !important;
-}
-
-/* 讓進行中的節點維持優雅的縮放呼吸效果 */
 .branch-left.current-branch .branch-content::before { animation: nodeGlowLeft 2.5s infinite ease-in-out; }
 .branch-right.current-branch .branch-content::before { animation: nodeGlowRight 2.5s infinite ease-in-out; }
 
@@ -638,21 +384,246 @@ body {
     50% { box-shadow: 0 0 12px rgba(255,255,255,0.8); transform: translateX(-50%) scale(1.2); }
 }
 
-/* ─── 關鍵字底部細線（配合風格改成微弱的白線） ─── */
 .branch-content strong {
     color: #eae6df;
     font-weight: 600;
     border-bottom: 1px dashed rgba(234, 230, 223, 0.3);
 }
 
-/* ─── RWD 手機版優化 ─── */
+/* ==========================================================================
+   6. 文章列表頁面 (Article Page - 精緻不透明大圓角卡片版)
+   ========================================================================== */
+.main-wrapper {
+    max-width: 850px;
+    margin: 120px auto; /* 確保主區塊置中並留出 navbar 空間 */
+    padding: 0 40px;
+}
+
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 35px; 
+}
+
+/* 文章卡片本體：完全不透明、微亮的暖深灰背景 */
+.article-card {
+    position: relative;
+    background: #242420; /* 完美融合全站暖調的不透明暖深灰 */
+    border: 1px solid rgba(244, 238, 222, 0.15); /* 象牙白細邊框 */
+    border-radius: 16px; /* 大圓角導角 */
+    padding: 35px;
+    text-align: left; 
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 滑鼠懸停卡片效果 */
+.article-card:hover {
+    transform: translateY(-3px); 
+    border-color: rgba(244, 238, 222, 0.4); 
+    background: #2b2b27; 
+}
+
+.article-meta {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: #a19e98; 
+    margin-bottom: 14px;
+    display: flex;
+    gap: 15px;
+}
+
+.article-date {
+    letter-spacing: 0.5px;
+}
+
+.article-tag {
+    font-style: italic;
+    color: #888277; 
+}
+
+.article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+}
+
+.article-title a {
+    color: #eae6df; 
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.article-title a:hover {
+    opacity: 0.7; 
+}
+
+.article-summary {
+    color: #a19e98;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.read-more {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(234, 230, 223, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s, padding-left 0.2s;
+}
+
+.read-more:hover {
+    color: #f4eede;
+    padding-left: 5px; 
+}
+/* ==========================================================================
+   7. 聯絡我頁面 (Contact Page)
+   ========================================================================== */
+.contact-container {
+    max-width: 1200px;
+    margin: 120px auto 0 auto; 
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 80px;
+    align-items: start;
+}
+
+.contact-info {
+    color: #eae6df;
+}
+
+.contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.contact-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #a19e98; 
+    margin-bottom: 48px;
+    max-width: 400px;
+}
+
+.info-links a {
+    color: #eae6df;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: opacity 0.3s;
+}
+
+.info-links a:hover {
+    opacity: 0.7;
+}
+
+.social-links {
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.social-links a {
+    color: #a19e98;
+    font-size: 0.9rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #eae6df;
+    margin-bottom: 12px;
+}
+
+.form-group input,
+.form-group textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #444; 
+    color: #eae6df;
+    font-size: 1rem;
+    padding: 8px 0;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.4s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-bottom: 1px solid #eae6df; 
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+.submit-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid #eae6df;
+    color: #eae6df;
+    padding: 12px 32px;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #eae6df;
+    color: #111; 
+}
+
+/* ==========================================================================
+   8. 全站響應式設定 (RWD Layouts)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* 導覽列與一般縮放 */
+    .navbar {
+        padding: 20px;
+    }
+
+    /* 歷程樹手機版 */
     .circuit-tree::before { left: 20px; transform: none; animation: none; background: rgba(234, 230, 223, 0.3); }
     .tree-node::before, .tree-node::after { display: none; } 
     .branch-content::before { left: 20px !important; top: 25px; animation: none !important; background: #eae6df !important; }
     .branch-left .branch-content::before, .branch-right .branch-content::before { transform: translateX(-50%) !important; }
-    
     .branch-left, .branch-right { justify-content: flex-start; }
     .branch-content { width: 100%; padding: 20px 0 20px 40px !important; text-align: left !important; }
     .tree-node { margin-bottom: 50px; }
+
+    /* 關於我手機版 */
+    .about-header .about-quote { font-size: 1.8rem; }
+    .about-content { grid-template-columns: 1fr; gap: 40px; }
+
+    /* 文章列表手機版 */
+    .article-wrapper { margin: 80px auto; padding: 0 20px; }
+    .article-node { padding: 25px; }
+    .article-title { font-size: 1.5rem; }
+
+    /* 聯絡我手機版 */
+    .contact-container { grid-template-columns: 1fr; margin: 80px auto 0 auto; gap: 48px; }
+    .contact-title { font-size: 2.5rem; }
 }
