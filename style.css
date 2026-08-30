@@ -121,14 +121,14 @@ body {
    4. 關於我頁面 (About Page)
    ========================================================================== */
 .about-container {
-    max-width: 1100px; /*[span_58](start_span)[span_58](end_span)*/
-    margin: 140px auto 0 auto; /*[span_59](start_span)[span_59](end_span)*/
-    padding: 0 40px; /*[span_60](start_span)[span_60](end_span)*/
+    max-width: 1100px;
+    margin: 60px auto 0 auto; /* 從 140px 縮小到 60px */
+    padding: 0 40px;
 }
 
 .about-header {
-    text-align: center; /*[span_61](start_span)[span_61](end_span)*/
-    margin-bottom: 80px; /*[span_62](start_span)[span_62](end_span)*/
+    text-align: center;
+    margin-bottom: 40px;      /* 從 80px 縮小到 40px */
 }
 
 .about-header .subtitle {
@@ -624,3 +624,35 @@ body {
     .contact-container { grid-template-columns: 1fr; margin: 80px auto 0 auto; gap: 48px; } /*[span_341](start_span)[span_341](end_span)*/
     .contact-title { font-size: 2.5rem; } /*[span_342](start_span)[span_342](end_span)*/
 }
+
+.banner-wrapper {
+    max-width: 650px;
+    height: 140px;
+    margin: 0 auto;           /* 保持區塊置中 */
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;  /* 強制對齊圖片頂部，讓裁切畫面往上移 */
+    display: block;
+}
+
+
+/* 1. 隱藏灰色小方塊 */
+.skills-list li::before {
+    display: none !important;
+}
+
+/* 2. 完美的對齊參數：完全比照 Bio 的行高與間距 */
+.skills-list li {
+    margin-bottom: 24px !important;
+    padding-left: 0 !important;
+    color: #eae6df !important;
+    font-size: 1.05rem !important;  /* 齊平字體大小 */
+    line-height: 1.8 !important;     /* 齊平 Bio 的垂直行高 */
+}
+
